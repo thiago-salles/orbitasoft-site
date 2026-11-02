@@ -5,6 +5,7 @@ import { marca, mensagemWhatsapp, sistemas, numeros, passos, beneficiosParceiro,
 const zap = `https://wa.me/${marca.whatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
 const zapParceiro = `https://wa.me/${marca.whatsapp}?text=${encodeURIComponent('Olá! Quero ser parceiro de indicação da Órbita Soft.')}`;
 const ano = new Date().getFullYear();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const icones: Record<string, string> = {
   cardapio: 'M4 5h16M4 12h16M4 19h10',
@@ -18,7 +19,7 @@ const icones: Record<string, string> = {
   <header id="topo" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
       <a href="#inicio" class="flex items-center gap-2.5" aria-label="Órbita Soft, início">
-        <img src="/favicon.svg" alt="" width="36" height="36" class="h-9 w-9" />
+        <img src={`${base}/favicon.svg`} alt="" width="36" height="36" class="h-9 w-9" />
         <span class="font-display text-xl font-semibold tracking-tight">Órbita <span class="text-white/60">Soft</span></span>
       </a>
       <ul class="hidden items-center gap-8 text-sm text-white/70 md:flex">
@@ -143,7 +144,7 @@ const icones: Record<string, string> = {
           <article class={`cartao revelar group flex flex-col p-8 ${s.grande ? 'lg:col-span-2 lg:row-span-2' : ''}`} style={`--atraso:${i * 90}ms`}>
             <div class="flex items-start justify-between">
               {s.imagem ? (
-                <img src={s.imagem} alt={`Ícone do ${s.nome}`} width="64" height="64" class="h-16 w-16 rounded-2xl object-cover" loading="lazy" />
+                <img src={`${base}${s.imagem}`} alt={`Ícone do ${s.nome}`} width="64" height="64" class="h-16 w-16 rounded-2xl object-cover" loading="lazy" />
               ) : (
                 <div class={`grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br ${s.cor}`}>
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#05060f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d={icones[s.icone as string]}></path></svg>
@@ -227,7 +228,7 @@ const icones: Record<string, string> = {
 
   <footer class="border-t border-white/10 py-10">
     <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 text-sm text-white/45 sm:flex-row sm:px-8">
-      <div class="flex items-center gap-2.5"><img src="/favicon.svg" alt="" width="28" height="28" class="h-7 w-7" /><span class="font-display text-white/80">Órbita Soft</span></div>
+      <div class="flex items-center gap-2.5"><img src={`${base}/favicon.svg`} alt="" width="28" height="28" class="h-7 w-7" /><span class="font-display text-white/80">Órbita Soft</span></div>
       <p>© {ano} Órbita Soft. Todos os direitos reservados.</p>
       <p>{marca.dominio}</p>
     </div>

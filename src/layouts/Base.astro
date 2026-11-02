@@ -10,6 +10,8 @@ const {
   titulo = `${marca.nome} | ${marca.slogan}`,
   descricao = 'Sistemas de gestão, PDV, loja online, cardápio digital e chatbot para o seu negócio crescer. Conheça os sistemas da Órbita Soft e seja nosso parceiro.',
 } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const demo = base !== '';
 ---
 
 <!doctype html>
@@ -20,8 +22,8 @@ const {
     <title>{titulo}</title>
     <meta name="description" content={descricao} />
     <meta name="theme-color" content="#05060f" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={`https://${marca.dominio}/`} />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    {demo ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={`https://${marca.dominio}/`} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descricao} />
