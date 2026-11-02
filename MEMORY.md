@@ -17,3 +17,12 @@ Registro de pedidos e decisões do site de divulgação dos sistemas, sites e pa
 - **Verificação:** `npm run build` OK. Conferência visual no navegador ainda não feita.
 - **Comandos:** `npm run dev` (prévia em http://localhost:4321), `npm run build` (gera `dist/`).
 - **Observação:** `npm audit` aponta falhas no Astro (XSS em `define:vars` e MDX), recursos que o site não usa. Atualizar o Astro antes de publicar.
+
+### #002 — Demonstração no GitHub Pages
+- **Data:** 2026-11-02
+- **Status:** Concluído.
+- **Repositório:** https://github.com/thiago-salles/orbitasoft-site (tornado **público** por autorização do dono, porque Pages em repositório privado exige plano pago).
+- **Demonstração:** https://thiago-salles.github.io/orbitasoft-site/ (com `noindex`).
+- **Como funciona:** `.github/workflows/deploy.yml` publica a cada push na `main`. O workflow define `SITE_URL` e `BASE_PATH=/orbitasoft-site`; sem essas variáveis o site usa a raiz (produção em orbitasoft.com.br).
+- **Ferramentas:** GitHub CLI instalado (`C:\Program Files\GitHub CLI\gh.exe`), logado como thiago-salles.
+- **Atenção:** o repositório público contém textos e WhatsApp provisórios. Para o domínio definitivo, remover `BASE_PATH` e adicionar o domínio no Pages.
