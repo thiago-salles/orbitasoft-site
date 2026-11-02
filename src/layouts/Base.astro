@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+import { marca } from '../data/site';
+
+interface Props {
+  titulo?: string;
+  descricao?: string;
+}
+const {
+  titulo = `${marca.nome} | ${marca.slogan}`,
+  descricao = 'Sistemas de gestão, PDV, loja online, cardápio digital e chatbot para o seu negócio crescer. Conheça os sistemas da Órbita Soft e seja nosso parceiro.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descricao} />
+    <meta name="theme-color" content="#05060f" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`https://${marca.dominio}/`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

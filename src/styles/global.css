@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-fundo: #05060f;
+  --color-painel: #0b0d1c;
+  --color-borda: rgba(255, 255, 255, 0.08);
+  --color-azul: #3b82f6;
+  --color-ciano: #22d3ee;
+  --color-violeta: #8b5cf6;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-fundo);
+}
+
+body {
+  background: var(--color-fundo);
+  color: #e6e8f5;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.texto-gradiente {
+  background: linear-gradient(100deg, #67e8f9 0%, #60a5fa 40%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Revelar ao rolar */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--atraso, 0ms);
+}
+.revelar.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cartão com brilho que segue o mouse */
+.cartao {
+  position: relative;
+  border: 1px solid var(--color-borda);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: transform 0.35s ease, border-color 0.35s ease;
+}
+.cartao::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(96, 165, 250, 0.18), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.cartao:hover {
+  border-color: rgba(96, 165, 250, 0.35);
+  transform: translateY(-4px);
+}
+.cartao:hover::before {
+  opacity: 1;
+}
+
+/* Botões */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.botao-principal {
+  background: linear-gradient(100deg, #22d3ee, #3b82f6 50%, #8b5cf6);
+  color: #fff;
+  box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.7);
+}
+.botao-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 50px -8px rgba(139, 92, 246, 0.8);
+}
+.botao-vidro {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+}
+.botao-vidro:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Fundo de malha */
+.malha {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+/* Faixa que rola */
+@keyframes rolar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.faixa-rolante {
+  animation: rolar 32s linear infinite;
+}
+
+@keyframes flutuar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.flutuar {
+  animation: flutuar 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .faixa-rolante,
+  .flutuar {
+    animation: none;
+  }
+}
